@@ -1,0 +1,1 @@
+C:\BorfOfARoleplay\run.cmd +exec server.cfg 
