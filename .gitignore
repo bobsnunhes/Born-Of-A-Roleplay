@@ -1,0 +1,3 @@
+#Ignorando pastas de cache e erros do servidor
+cache/
+crashes/
