@@ -1,1 +1,1 @@
-C:\BorfOfARoleplay\run.cmd +exec server.cfg 
+start "ServerManager" C:\BorfOfARoleplay\run.cmd +exec server.cfg
