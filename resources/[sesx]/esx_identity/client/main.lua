@@ -52,7 +52,7 @@ RegisterNUICallback('escape', function(data, cb)
 	if hasIdentity then
 		EnableGui(false)
 	else
-		TriggerEvent('chat:addMessage', { args = { '^1[IDENTITY]', '^1You must create your first character in order to play' } })
+		TriggerEvent('chat:addMessage', { args = { '^1[IDENTITY]', '^1Você deve primeiro criar o seu primeiro personagem para jogar.' } })
 	end
 end)
 
@@ -68,18 +68,18 @@ RegisterNUICallback('register', function(data, cb)
 			end
 		elseif theData == "dateofbirth" then
 			if value == "invalid" then
-				reason = "Invalid date of birth!"
+				reason = "Data de nascimento inválida!"
 				break
 			end
 		elseif theData == "height" then
 			local height = tonumber(value)
 			if height then
 				if height > 200 or height < 140 then
-					reason = "Unacceptable player height!"
+					reason = "Altura do jogador inválida!"
 					break
 				end
 			else
-				reason = "Unacceptable player height!"
+				reason = "Altura do jogador inválida!"
 				break
 			end
 		end
@@ -126,7 +126,7 @@ function verifyName(name)
 	-- Don't allow short user names
 	local nameLength = string.len(name)
 	if nameLength > 25 or nameLength < 2 then
-		return 'Your player name is either too short or too long.'
+		return 'O nome de jogador deve ser entre 2 e 25 caracteres..'
 	end
 	
 	-- Don't allow special characters (doesn't always work)
@@ -135,7 +135,7 @@ function verifyName(name)
 		count = count + 1
 	end
 	if count ~= nameLength then
-		return 'Your player name contains special characters that are not allowed on this server.'
+		return 'Não é permitido caracteres especiais no nome do jogador.'
 	end
 	
 	-- Does the player carry a first and last name?
@@ -156,11 +156,11 @@ function verifyName(name)
 	end
 
 	if spacesInName > 2 then
-		return 'Your name contains more than two spaces'
+		return 'O seu nome não pode conter mais de dois espaços'
 	end
 	
 	if spacesWithUpper ~= spacesInName then
-		return 'your name must start with a capital letter.'
+		return 'Utilize letra maiúscula no início do nome.'
 	end
 
 	return ''
