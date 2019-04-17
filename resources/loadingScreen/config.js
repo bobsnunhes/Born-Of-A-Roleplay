@@ -1,11 +1,11 @@
 /* Need Help? Join my discord @ discord.gg/yWddFpQ */
 var config = {
     /* In milliseconds */
-    "transitionInterval": 1250,
+    "transitionInterval": 1000,
     "imgInterval": 8000,
     "music": true,
     /* Insert the Youtube Video ID below */
-    "videoID": "Iww-l4UtygE",
+    "videoID": "Ln2Wf7slbHA", // Somente videos sem copyright
     /* Music Volume (0%-100%) | Lower is Quieter, Higher is Louder */
     "musicVolume": 70,
     "text": {
