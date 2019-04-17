@@ -1,4 +1,4 @@
-taskkill /f /fi "WindowTitle eq cmd.exe*"
+taskkill /f /fi "WindowTitle eq ServerManager*"
 taskkill /f /im FXServer.exe >nul
 
 
@@ -7,5 +7,5 @@ echo -- Cache foi deletada com sucesso...
 echo ... %time% - espere um pouco...
 
 :start
-start "Server" C:\BorfOfARoleplay\run.cmd +exec server.cfg
-echo ... %time% - Iniciando essa bosta...
+start "ServerManager" C:\BorfOfARoleplay\run.cmd +exec server.cfg
+echo ... %time% - Iniciando...

@@ -7,7 +7,7 @@ echo SCRIPT DE REINICIO AUTOMATICO
 
 timeout /t 10 >null
 
-start "Server" C:\BorfOfARoleplay\run.cmd +exec server.cfg
+start "ServerManager" C:\BorfOfARoleplay\run.cmd +exec server.cfg
 echo ... %time% - Iniciando servidor
 
 timeout /t 15 >null
@@ -21,7 +21,7 @@ echo ... %time% - Hora de reiniciar o servidor...
 
 timeout /t 2 >null
 
-taskkill /f /fi "WindowTitle eq Server*"
+taskkill /f /fi "WindowTitle eq ServerManager*"
 taskkill /f /im FXServer.exe >nul
 
 

@@ -1,4 +1,4 @@
-taskkill /f /fi "WindowTitle eq cmd.exe*"
+taskkill /f /fi "WindowTitle eq ServerManager*"
 taskkill /f /im FXServer.exe >nul
 
 
