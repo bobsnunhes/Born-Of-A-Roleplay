@@ -7,9 +7,9 @@ resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 description 'EssentialMode by Kanersps.'
 
-ui_page 'ui.html'
-
-server_scripts { 
+server_scripts {
+	'server/sqlite/SQLite.net.dll',
+	'server/sqlite/sqlite.js',
 	'config.lua',
 	'server/util.lua',
 	'server/main.lua',
@@ -21,12 +21,6 @@ server_scripts {
 
 client_scripts {
 	'client/main.lua'
-}
-
--- NUI Files
-files {
-	'ui.html',
-	'pdown.ttf'
 }
 
 exports {
