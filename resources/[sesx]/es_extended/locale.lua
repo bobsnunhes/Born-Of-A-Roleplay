@@ -7,7 +7,7 @@ function _(str, ...)  -- Translate string
 		if Locales[Config.Locale][str] ~= nil then
 			return string.format(Locales[Config.Locale][str], ...)
 		else
-			return 'Translation [' .. Config.Locale .. '][' .. str .. '] does not exist'
+			return 'A tradução para [' .. Config.Locale .. '][' .. str .. '] não existe'
 		end
 
 	else

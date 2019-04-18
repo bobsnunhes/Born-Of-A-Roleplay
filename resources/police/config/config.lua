@@ -16,7 +16,7 @@ config = {
 	displayRankBeforeNameOnChat = true,
 	
 	--Available languages : 'en', 'fr', 'de'
-	lang = 'en',
+	lang = 'br',
 		
 	bindings = {
 		interact_position = 51, -- E

@@ -2,7 +2,7 @@ Config              = {}
 Config.DrawDistance = 100.0
 Config.MaxDelivery	= 10
 Config.TruckPrice	= 200
-Config.Locale       = 'en'
+Config.Locale       = 'br'
 
 Config.Trucks = {
 	"Shamal",
@@ -52,7 +52,7 @@ Config.Livraison = {
 			Type  = 1,
 			Paye = 900
 		},
-	-- a coté des flic
+	-- a cotï¿½ des flic
 	Delivery2LS = {
 			Pos   = {x = 672.72821044922, y = 1068.3173828125, z = 414.25543212891},
 			Color = {r = 204, g = 204, b = 0},

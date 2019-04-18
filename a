@@ -1,0 +1,180 @@
+[33mcommit 6d1413e3c43747050b266b51d8fb3144ca347e1e[m[33m ([m[1;36mHEAD -> [m[1;32mesx[m[33m)[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 10:43:54 2019 +0000
+
+    Adicionado Agente de Transito
+
+[33mcommit f58cc04d4e0c6a743d9205adac68e7a6f9d27744[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 03:48:31 2019 +0000
+
+    Adicionado balcao de empregos
+
+[33mcommit 6ff491428c2debd2b4358a6d04db1f6c29bacb09[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 03:31:36 2019 +0000
+
+    Adicionado Taxi Aéreo
+
+[33mcommit d85e43c047bb452e703fe76060a56d64193b7f8e[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 03:21:23 2019 +0000
+
+    Adicionado Segurança de bancos
+
+[33mcommit 5376184685ce489484e9c65bbcfb88834b21381e[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 03:15:15 2019 +0000
+
+    Coleta de Lixo adicionada
+
+[33mcommit aaa659d2498eae2dd794c1cd6063816d02b9bd98[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 03:09:45 2019 +0000
+
+    Adicionado Entregador de pizza
+
+[33mcommit e13616a76f202c4f3473f25fe2bfb7c779ea7899[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Thu Apr 18 02:51:44 2019 +0000
+
+    Adicionado job mod para policia
+
+[33mcommit f94ac70d57a16e07001edbcc8bb6a004b2da8657[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 23:59:56 2019 +0000
+
+    Tradução da tela de login para portugues
+
+[33mcommit 1fd9644c69d7d8f5b2aaaae51656f81ca00ec409[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 22:26:59 2019 +0000
+
+    Adicionado JOB POLICIA + Tela de login inicial em ingles
+
+[33mcommit c15bc7f57e9ed7dbec76f3f8e6afdce5a6dc0969[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 21:14:08 2019 +0000
+
+    Adicionado ESX_ADDONINVENTORY - Possibilita adicionar itens ao inventário do player: Ex loja
+
+[33mcommit 6f98dee130011ff49f7f86f05374659229634fb6[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 20:23:17 2019 +0000
+
+    Adicionado ESX_LICENSE - Gerenciamento de licenças.
+
+[33mcommit d2b5d0de84f0551a20067d475c861900145a5b8f[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 19:56:13 2019 +0000
+
+    Adicionado ESX_IDENTITY - Algumas funcoes para registro de players /register, /charList, etc
+
+[33mcommit b06becdc2fe4a659bdec68fcef5ff98c544e26d8[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 19:47:20 2019 +0000
+
+    Adicionado ESX_SKIN - Traz funcionalidades para escolha de pele do personagem, buscar informacoes da pele etc
+
+[33mcommit 42cff899af4e34c1b7e11150071bc818c81a54de[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 19:41:37 2019 +0000
+
+    Adicionado SKINCHANGER - Cria variaveis com tipos de aparencia padrao
+
+[33mcommit 6efd4fed1be3b08c5e40fea296ba81be33ca7f5a[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 19:36:58 2019 +0000
+
+    Adicionado ESX_DATASTORE - Permite criar armazens compartilhados ou nao para players
+
+[33mcommit 7db87273768a59b87235505d2fa6e6d375b64eba[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 19:18:37 2019 +0000
+
+    Adicionado ESX_BILLING - Possibilita realizar pagamentos a players proximos
+
+[33mcommit 84b19d648db404d754fd991cca5f9f6df93214e2[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 19:12:29 2019 +0000
+
+    Adicionado ESX_SOCIETY - Permite mostrar dados de um grupo no HUD
+
+[33mcommit 9f6a90decdcde9f1a2466ae468fa78797c5a1467[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 18:48:09 2019 +0000
+
+    Instalado ESX_ADDONACCOUNT- Possibilita criar contas de usuários compartilhadas
+
+[33mcommit c71a2f06c43bcc115ad47cdce1e188eb013240b1[m[33m ([m[1;31morigin/esx[m[33m)[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 18:29:54 2019 +0000
+
+    CRON adicionado - Possibilita criar eventos de acordo com a hora
+
+[33mcommit ca188aa44d286b2990e49f8a970cd66ad56bb3af[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 18:22:55 2019 +0000
+
+    Atualização do ESX
+
+[33mcommit f7dc46887824d79bca5c5b012e33b6990afb41d0[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 17:35:57 2019 +0000
+
+    Loading screen sem logo - OK
+
+[33mcommit 8f9d12ae5c28648410bcf37edabe9055fa95f8da[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 16:12:06 2019 +0000
+
+    adicionado novas imagens ao loaging screen
+
+[33mcommit 4ace40b9e8ef77d538991d60c8b048c03567ff16[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 14:01:33 2019 +0000
+
+    RCON configurada
+
+[33mcommit 39bf64b4d5d42c2373d08cbac2af815a019331ac[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Wed Apr 17 13:31:24 2019 +0000
+
+    primeira versao do esx ok, falta atualizar para versao do essentialmode mais recente
+
+[33mcommit 1d53e21d9d8c72a4f168b20d0fe7ee8240106e84[m[33m ([m[1;32mdesenv[m[33m)[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Tue Apr 16 23:22:15 2019 +0000
+
+    Deletando cache folder
+
+[33mcommit 85287cab0a0eba2bceac59d092c20e88e4334e2a[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Mon Apr 15 21:58:19 2019 +0000
+
+    adicionando .gitignore file
+
+[33mcommit e4eb3376b7abf789fb6ebe56ef6428eee4978999[m[33m ([m[1;31morigin/desenv[m[33m)[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Mon Apr 15 21:01:13 2019 +0000
+
+    loading screen adicionada
+
+[33mcommit d83967cde7cc3507d4d2fcd2ca95b67899938e6f[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: b2feb63 4a53cd4
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Sun Apr 14 16:53:36 2019 +0000
+
+    Merge branch 'master' of https://github.com/bobsnunhes/Born-Of-A-Roleplay
+
+[33mcommit b2feb63e13ddfc4d3ee873744a72137d1fe3d13d[m
+Author: bobsnunhes <bobsnunhes@hotmail.com>
+Date:   Sun Apr 14 15:19:35 2019 +0000
+
+    Primeiro commit
+
+[33mcommit 4a53cd4c1f65982a32e534dc9cd0d55bc1d50d25[m
+Author: Roberto Nunhes <bobsnunhes@hotmail.com>
+Date:   Sun Apr 14 11:51:51 2019 -0300
+
+    Initial commit
