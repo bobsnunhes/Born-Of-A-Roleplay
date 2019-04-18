@@ -48,11 +48,46 @@ AddEventHandler('esx_identity:saveID', function(data)
 	myIdentifiers = data
 end)
 
+RegisterNetEvent('esx_identity:noIdentity')
+AddEventHandler('esx_identity:noIdentity', function()
+	ESX.ShowNotification('You do not have an identity.')
+end)
+
+RegisterNetEvent('esx_identity:showIdentity')
+AddEventHandler('esx_identity:showIdentity', function(data)
+	ESX.ShowNotification('Character: ' .. data.firstname .. ' ' .. data.lastname)
+end)
+
+RegisterNetEvent('esx_identity:successfulDeleteIdentity')
+AddEventHandler('esx_identity:successfulDeleteIdentity', function(data)
+	ESX.ShowNotification('Successfully deleted ' .. data.firstname .. ' ' .. data.lastname .. '.')
+end)
+
+RegisterNetEvent('esx_identity:failedDeleteIdentity')
+AddEventHandler('esx_identity:failedDeleteIdentity', function(data)
+	ESX.ShowNotification('Failed to delete ' .. data.firstname .. ' ' .. data.lastname .. '. Please contact a server admin.')
+end)
+
+RegisterNetEvent('esx_identity:successfulSetIdentity')
+AddEventHandler('esx_identity:successfulSetIdentity', function(data)
+	ESX.ShowNotification('Successfully created ' .. data.firstname .. ' ' .. data.lastname .. '.')
+end)
+
+RegisterNetEvent('esx_identity:failedSetIdentity')
+AddEventHandler('esx_identity:failedSetIdentity', function(data)
+	ESX.ShowNotification('Failed to create ' .. data.firstname .. ' ' .. data.lastname .. '. Please contact a server admin.')
+end)
+
+RegisterNetEvent('esx_identity:registrationBlocked')
+AddEventHandler('esx_identity:registrationBlocked', function(data)
+	ESX.ShowNotification('You already have a character. Delete your character to make a new one.')
+end)
+
 RegisterNUICallback('escape', function(data, cb)
 	if hasIdentity then
 		EnableGui(false)
 	else
-		TriggerEvent('chat:addMessage', { args = { '^1[IDENTITY]', '^1Você deve primeiro criar o seu primeiro personagem para jogar.' } })
+		ESX.ShowNotification('Please make a character in order to play on this server.')
 	end
 end)
 
@@ -68,18 +103,18 @@ RegisterNUICallback('register', function(data, cb)
 			end
 		elseif theData == "dateofbirth" then
 			if value == "invalid" then
-				reason = "Data de nascimento inválida!"
+				reason = "Invalid date of birth."
 				break
 			end
 		elseif theData == "height" then
 			local height = tonumber(value)
 			if height then
 				if height > 200 or height < 140 then
-					reason = "Altura do jogador inválida!"
+					reason = "Please enter a height between 140 and 200."
 					break
 				end
 			else
-				reason = "Altura do jogador inválida!"
+				reason = "Please enter a height between 140 and 200."
 				break
 			end
 		end
@@ -89,7 +124,6 @@ RegisterNUICallback('register', function(data, cb)
 		TriggerServerEvent('esx_identity:setIdentity', data, myIdentifiers)
 		EnableGui(false)
 		Citizen.Wait(500)
-		TriggerEvent('esx_skin:openSaveableMenu', myIdentifiers.id)
 	else
 		ESX.ShowNotification(reason)
 	end
@@ -126,7 +160,7 @@ function verifyName(name)
 	-- Don't allow short user names
 	local nameLength = string.len(name)
 	if nameLength > 25 or nameLength < 2 then
-		return 'O nome de jogador deve ser entre 2 e 25 caracteres..'
+		return 'Your player name is either too short or too long.'
 	end
 	
 	-- Don't allow special characters (doesn't always work)
@@ -135,7 +169,7 @@ function verifyName(name)
 		count = count + 1
 	end
 	if count ~= nameLength then
-		return 'Não é permitido caracteres especiais no nome do jogador.'
+		return 'Your player name contains special characters that are not allowed on this server.'
 	end
 	
 	-- Does the player carry a first and last name?
@@ -156,12 +190,16 @@ function verifyName(name)
 	end
 
 	if spacesInName > 2 then
-		return 'O seu nome não pode conter mais de dois espaços'
+		return 'Your name contains more than two spaces.'
 	end
 	
 	if spacesWithUpper ~= spacesInName then
-		return 'Utilize letra maiúscula no início do nome.'
+		return 'Your name must start with a capital letter.'
 	end
 
 	return ''
+end
+
+function openRegistry()
+  TriggerEvent('esx_identity:showRegisterIdentity')
 end

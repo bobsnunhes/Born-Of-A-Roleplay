@@ -12,12 +12,13 @@ AddEventHandler('bank:deposit', function(amount)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	if amount == nil or amount <= 0 or amount > xPlayer.getMoney() then
 		-- advanced notification with bank icon
-		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Deposit Money', 'Invalid amount', 'CHAR_BANK_MAZE', 9)
+		-- TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Deposit Money', 'Invalid amount', 'CHAR_BANK_MAZE', 9)
+		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Depositar dinheiro', 'Quantia inválida', 'CHAR_BANK_MAZE', 9)
 	else
 		xPlayer.removeMoney(amount)
 		xPlayer.addAccountMoney('bank', tonumber(amount))
                 -- advanced notification with bank icon
-		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Deposit Money', 'Depositou ~g~$' .. amount .. '~s~', 'CHAR_BANK_MAZE', 9)
+		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Depositar dinheiro', 'Depositou ~g~$' .. amount .. '~s~', 'CHAR_BANK_MAZE', 9)
 	end
 end)
 
@@ -31,12 +32,12 @@ AddEventHandler('bank:withdraw', function(amount)
 	base = xPlayer.getAccount('bank').money
 	if amount == nil or amount <= 0 or amount > base then
                  -- advanced notification with bank icon
-		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Withdraw Money', 'Invalid amount', 'CHAR_BANK_MAZE', 9)
+		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Sacar dinheiro', 'Quantia inválida', 'CHAR_BANK_MAZE', 9)
 	else
 		xPlayer.removeAccountMoney('bank', amount)
 		xPlayer.addMoney(amount)
                  -- advanced notification with bank icon
-                TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Withdraw Money', 'Sacou ~r~$' .. amount .. '~s~', 'CHAR_BANK_MAZE', 9)
+                TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Sacar dinheiro', 'Sacou ~r~$' .. amount .. '~s~', 'CHAR_BANK_MAZE', 9)
 	end
 end)
 
@@ -61,17 +62,17 @@ AddEventHandler('bank:transfer', function(to, amountt)
 	
 	if tonumber(_source) == tonumber(to) then
                 -- advanced notification with bank icon
-		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transfer Money', 'Você não pode transferir para você mesmo!', 'CHAR_BANK_MAZE', 9)
+		TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transferir dinheiro', 'Você não pode transferir para você mesmo!', 'CHAR_BANK_MAZE', 9)
 	else
 		if balance <= 0 or balance < tonumber(amountt) or tonumber(amountt) <= 0 then
                         -- advanced notification with bank icon
-			TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transfer Money', 'Dinheiro insuficiente para a transferência!', 'CHAR_BANK_MAZE', 9)
+			TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transferir dinheiro', 'Dinheiro insuficiente para a transferência!', 'CHAR_BANK_MAZE', 9)
 		else
 			xPlayer.removeAccountMoney('bank', amountt)
 			zPlayer.addAccountMoney('bank', amountt)
                         -- advanced notification with bank icon
-                        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transfer Money', 'Você transferiu ~r~$' .. amountt .. '~s~ para ~r~' .. to .. ' .', 'CHAR_BANK_MAZE', 9)
-			TriggerClientEvent('esx:showAdvancedNotification', to, 'Bank', 'Transfer Money', 'Você recebeu ~r~$' .. amountt .. '~s~ de ~r~' .. _source .. ' .', 'CHAR_BANK_MAZE', 9)
+                        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transferir dinheiro', 'Você transferiu ~r~$' .. amountt .. '~s~ para ~r~' .. to .. ' .', 'CHAR_BANK_MAZE', 9)
+			TriggerClientEvent('esx:showAdvancedNotification', to, 'Bank', 'Transferir dinheiro', 'Você recebeu ~r~$' .. amountt .. '~s~ de ~r~' .. _source .. ' .', 'CHAR_BANK_MAZE', 9)
 		end
 		
 	end

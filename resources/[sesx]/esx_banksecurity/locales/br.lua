@@ -25,7 +25,7 @@ Locales['br'] = {
 	['meet_del']				= 'Vá para ponto de entrega',
 	['return_depot']			= 'Retorne para sede dos correios.',
 	['blip_job']				= 'Transporte de Valores',
-	['blip_delivery']			= 'TRANSPOBRASIL : Finalizar entregas',
-	['blip_goal']				= 'TRANSPOBRASIL: Cancelar entregas',
-	['blip_depot']				= 'TRANSPOBRASIL: Déposito',
+	['blip_delivery']			= 'PROSEGUR: Finalizar entregas',
+	['blip_goal']				= 'PROSEGUR: Cancelar entregas',
+	['blip_depot']				= 'PROSEGUR: Déposito',
 }
