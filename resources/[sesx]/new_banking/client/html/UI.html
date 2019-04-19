@@ -38,7 +38,7 @@
                 <form id="deposit1">
 						<h3 class="sans">Olá, <span class="username1"></span></h3>
 						<h4 class="sans">Saldo: <span class="curbalance"></span></h4>
-                        <input id="amount" type="text" placeholder="Amount to deposit"><br>
+                        <input id="amount" type="text" placeholder="Quantia a ser depositada"><br>
                         <button id="deposit1" type="submit">Depósito</button>
                         <button id="canceldeposit" type="button">Cancelar</button> 	
                 </form>
@@ -49,7 +49,7 @@
                 <form id="withdraw1">
 						<h3 class="sans">Olá, <span class="username1"></span></h3>
 						<h4 class="sans">Saldo: <span class="curbalance"></span></h4>
-                        <input id="amountw" type="text" placeholder="Amount to withdraw"><br>
+                        <input id="amountw" type="text" placeholder="Quantia a ser sacada"><br>
                         <button id="withdraw1" type="submit">Saque</button>
                         <button id="cancelwithdraw" type="button">Cancelar</button> 	
                 </form>
@@ -67,7 +67,7 @@
 						<h3 class="sans">Olá, <span class="username1"></span></h3>
 						<h4 class="sans">Saldo: <span class="curbalance"></span></h4>
                         <input id="to" type="text" placeholder="To Player ID"><br>
-						<input id="amountt" type="text" placeholder="Amount to transfer"><br>
+						<input id="amountt" type="text" placeholder="Quantia a ser transferida"><br>
                         <button id="transfer1" type="submit">Tranferência</button>
                         <button id="canceltransfer" type="button">Cancelar</button> 	
 				</form>
@@ -241,7 +241,5 @@
             $.post('http://new_banking/NUIFocusOff', JSON.stringify({}));
         }
     }
-
-	
 	</script>
 </html>

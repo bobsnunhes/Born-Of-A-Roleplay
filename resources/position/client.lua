@@ -37,7 +37,7 @@ end
 Citizen.CreateThread(function () 
     while true do 
         Citizen.Wait(0)
-        if (IsControlJustReleased(1, 29)) then
+        if (IsControlJustReleased(1, 29)) then --B
             POSITIONS.start()
         end
         
@@ -93,7 +93,7 @@ Citizen.CreateThread(function ()
             Citizen.Wait(10)
         end
 
-        if (IsControlJustReleased(1, 176)) then -- ENTER
+        if (IsControlJustReleased(1, 176)) and (POSITIONS.marker.active) then -- ENTER
             local text = "{x = "..POSITIONS.marker.x..", y = "..POSITIONS.marker.y..", z = "..POSITIONS.marker.z..", h = "..POSITIONS.marker.h..", r = "..POSITIONS.marker.r.."},"
             subTitle(text)
 
@@ -106,6 +106,7 @@ Citizen.CreateThread(function ()
             POSITIONS.marker.active = false
 
             subTitle("Position saved !")
+            hasStarted = false
         end
 
         if (IsControlJustReleased(1, 177)) then
