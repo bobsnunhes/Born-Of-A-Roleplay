@@ -1,0 +1,21 @@
+Locales ['br'] = {
+    ['store'] = 'Loja de Acessórios',
+    ['valid_purchase'] = 'Comprar este item?',
+    ['yes'] = 'Sim',
+    ['no'] = 'Não',
+    ['helmet'] = 'Capacete / Chapéu',
+    ['glasses'] = 'Óculos',
+    ['mask'] = 'Máscara',
+    ['ears'] = 'Brincos',
+    ['shop'] = 'Loja',
+    ['set_unset'] = 'Vestir / Retirar',
+    ['not_enough_money'] = 'Você não tem dinheiro suficiente',
+    ['press_access'] = 'Pressione ~INPUT_CONTEXT~ para acessar o menu',
+    ['accessories_blip'] = 'Acessórios',
+    ['no_ears'] = 'Você não tem brincos',
+    ['no_glasses'] = 'Você não tem óculos',
+    ['no_helmet'] = 'Você não tem capacete / chapéu',
+    ['no_mask'] = 'Você não tem máscara',
+    ['you_paid'] = 'Você pagou',
+
+}
