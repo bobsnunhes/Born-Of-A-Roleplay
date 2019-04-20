@@ -477,17 +477,18 @@ Citizen.CreateThread(function()
 end)
 
 -- Menu interactions
-Citizen.CreateThread(function()
-	while true do
+-- Roberto - Removido para utilizar HUD esx_inventoryhud
+-- Citizen.CreateThread(function()
+-- 	while true do
 
-		Citizen.Wait(0)
+-- 		Citizen.Wait(0)
 
-		if IsControlJustReleased(0, Keys['F2']) and GetLastInputMethod(2) and not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
-			ESX.ShowInventory()
-		end
+-- 		if IsControlJustReleased(0, Keys['F2']) and GetLastInputMethod(2) and not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
+-- 			ESX.ShowInventory()
+-- 		end
 
-	end
-end)
+-- 	end
+-- end)
 
 -- Dot above head
 if Config.ShowDotAbovePlayer then
