@@ -22,6 +22,7 @@ echo ... %time% - Hora de reiniciar o servidor...
 timeout /t 2 >null
 
 taskkill /f /fi "WindowTitle eq ServerManager*"
+taskkill /f /fi "WindowTitle eq Selecionar ServerManager*"
 taskkill /f /im FXServer.exe >nul
 
 

@@ -1,0 +1,117 @@
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+
+<body>
+	<div class="full-screen">
+		<div class="question-container">
+			<!-- header -->
+			<div class="header">
+				<h1>Auto Escola</h1>
+			</div>
+			<!-- home -->
+			<div class="body home">
+				<div class="content">
+					<!-- ICI BREVE PRESENTATION -->
+					<center>
+						<img src="dmv.png" class="logo">
+						<br>
+						<p class="bold-text">Seja bem vindo !</center>
+					<br>
+					<center>Todos o cidadão é obrigado a tirar carta de motorista antes de poder dirigir.
+						<br>Não tenha pressa no exame, responda com atenção, não responda aleatóriamente.
+						<br>
+						<br> Teste Teórico
+						<br> - O Teste teórico custa $200, e o mesmo não será devolvido caso você falhe no teste.
+						<br> - Não tenha medo, a auto escola aceita cartão de crédito, mas tenha cuidado para não adiquirir dívidas.
+						<br> - Ao falhar no teste o cidadão deverá aguardar um tempo até que outro teste seja reaberto.
+						<br>
+						<br> Teste de direção
+						<br> - O teste de direção custa $500 e como no teste teórico não devolvemos o seu dinheiro em caso de falha.
+						<br> - Fique sempre alerta enquanto dirige, evite acidentes!</p>
+					</center>
+				</div>
+				<div class="buttonspot">
+					<a href="#" class="button btnQuestion">Start</a>
+				</div>
+				<div class="barre-progression">
+					<h2>Progresso</h2>
+					<progress class="progression" value="0" max="10">
+				</div>
+			</div>
+			<!-- Question-->
+			<div class="body questionnaire-container">
+				<div class="content">
+					<h2 id="questionNumero"></h2>
+					<p id="question"></p>
+					<form class="form" id="question-form">
+						<div>
+							<input type="radio" name="question" id="answerA" value="A">
+							<label class="answerA"></label>
+						</div>
+						<div>
+							<input type="radio" name="question" id="answerB" value="B">
+							<label class="answerB"></label>
+						</div>
+						<div>
+							<input type="radio" name="question" id="answerC" value="C">
+							<label class="answerC"></label>
+						</div>
+						<div>
+							<input type="radio" name="question" id="answerD" value="D">
+							<label class="answerD"></label>
+						</div>
+						<button type="submit" id="submit" class="submit">Próxima Pergunta</button>
+					</form>
+				</div>
+				<div class="barre-progression">
+					<h2>Progresso</h2>
+					<progress class="progression" value="0" max="10">
+				</div>
+			</div>
+			<!-- Results -->
+			<div class="body resultGood">
+				<div class="content">
+					<center>
+						<p class="bold-text">Bom trabalho!</p>
+						<br>
+						<br>Você se saiu bem no exame.
+						<br>
+						<br>Agora feche a janela, é hora do teste de direção prática.</center>
+				</div>
+				<div class="buttonspot">
+					<a href="#" class="button btnClose">Fechar</a>
+				</div>
+				<div class="barre-progression">
+					<h2>Progresso</h2>
+					<progress class="progression" value="10" max="10">
+				</div>
+			</div>
+			<div class="body resultBad">
+				<div class="content">
+					<center>
+						<p class="bold-text">Você falhou</p>
+						<br>
+						<br>Você não estava preparado para o teste, tente novamente mais tarde...
+						<br>
+						<br>
+					</center>
+				</div>
+				<div class="buttonspot">
+					<a href="#" class="button btnKick">Fechar</a>
+				</div>
+				<div class="barre-progression">
+					<h2>Progresso</h2>
+					<progress class="progression" value="10" max="10">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<script src="questions_br.js" type="text/javascript"></script>
+	<script src="scripts.js" type="text/javascript"></script>
+	<script src="debounce.min.js" type="text/javascript"></script>
+
+</body>
