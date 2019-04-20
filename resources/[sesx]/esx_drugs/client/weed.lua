@@ -19,7 +19,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(10)
+		Citizen.Wait(0)
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 
@@ -29,23 +29,19 @@ Citizen.CreateThread(function()
 			end
 
 			if IsControlJustReleased(0, Keys['E']) and not isProcessing then
-				isProcessing = true
-				ESX.ShowNotification(_U('weed_processingstarted'))
-				TriggerServerEvent('esx_drugs:processCannabis')
-				local timeLeft = Config.Delays.WeedProcessing / 1000
 
-				while timeLeft > 0 do
-					Citizen.Wait(1000)
-					timeLeft = timeLeft - 1
-
-					if GetDistanceBetweenCoords(GetEntityCoords(playerPed), Config.CircleZones.WeedProcessing.coords, false) > 4 then
-						ESX.ShowNotification(_U('weed_processingtoofar'))
-						TriggerServerEvent('esx_drugs:cancelProcessing')
-						break
-					end
+				if Config.LicenseEnable then
+					ESX.TriggerServerCallback('esx_license:checkLicense', function(hasProcessingLicense)
+						if hasProcessingLicense then
+							ProcessWeed()
+						else
+							OpenBuyLicenseMenu('weed_processing')
+						end
+					end, GetPlayerServerId(PlayerId()), 'weed_processing')
+				else
+					ProcessWeed()
 				end
 
-				isProcessing = false
 			end
 		else
 			Citizen.Wait(500)
@@ -53,12 +49,34 @@ Citizen.CreateThread(function()
 	end
 end)
 
+function ProcessWeed()
+	isProcessing = true
+
+	ESX.ShowNotification(_U('weed_processingstarted'))
+	TriggerServerEvent('esx_drugs:processCannabis')
+	local timeLeft = Config.Delays.WeedProcessing / 1000
+	local playerPed = PlayerPedId()
+
+	while timeLeft > 0 do
+		Citizen.Wait(1000)
+		timeLeft = timeLeft - 1
+
+		if GetDistanceBetweenCoords(GetEntityCoords(playerPed), Config.CircleZones.WeedProcessing.coords, false) > 4 then
+			ESX.ShowNotification(_U('weed_processingtoofar'))
+			TriggerServerEvent('esx_drugs:cancelProcessing')
+			break
+		end
+	end
+
+	isProcessing = false
+end
+
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(10)
+		Citizen.Wait(0)
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
-		local nearbyObject, nearbyID = nil, nil
+		local nearbyObject, nearbyID
 
 		for i=1, #weedPlants, 1 do
 			if GetDistanceBetweenCoords(coords, GetEntityCoords(weedPlants[i]), false) < 1 then
@@ -99,6 +117,8 @@ Citizen.CreateThread(function()
 				end, 'cannabis')
 			end
 
+		else
+			Citizen.Wait(500)
 		end
 
 	end
@@ -162,17 +182,8 @@ function GenerateWeedCoords()
 		math.randomseed(GetGameTimer())
 		local modY = math.random(-90, 90)
 
-		if modX > 0 then
-			weedCoordX = Config.CircleZones.WeedField.coords.x + modX
-		else
-			weedCoordX = Config.CircleZones.WeedField.coords.x - modX
-		end
-
-		if modY > 0 then
-			weedCoordY = Config.CircleZones.WeedField.coords.y + modY
-		else
-			weedCoordY = Config.CircleZones.WeedField.coords.y - modY
-		end
+		weedCoordX = Config.CircleZones.WeedField.coords.x + modX
+		weedCoordY = Config.CircleZones.WeedField.coords.y + modY
 
 		local coordZ = GetCoordZ(weedCoordX, weedCoordY)
 		local coord = vector3(weedCoordX, weedCoordY, coordZ)

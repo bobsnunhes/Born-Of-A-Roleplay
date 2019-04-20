@@ -1,5 +1,5 @@
 Locales ['br'] = {
-    ['store'] = 'Loja de Acessórios',
+    ['store'] = 'Loja de Máscaras',
     ['valid_purchase'] = 'Comprar este item?',
     ['yes'] = 'Sim',
     ['no'] = 'Não',
