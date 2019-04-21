@@ -3,6 +3,7 @@ local HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum
 local IsBusy = false
 local spawnedVehicles, isInShopMenu = {}, false
 
+--funcao para abrir o menu do vestiário
 function OpenAmbulanceActionsMenu()
 	local elements = {
 		{label = _U('cloakroom'), value = 'cloakroom'}
@@ -14,11 +15,10 @@ function OpenAmbulanceActionsMenu()
 
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'ambulance_actions',
-	{
-		title		= _U('ambulance'),
-		align		= 'top-left',
-		elements	= elements
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'ambulance_actions', {
+		title    = _U('ambulance'),
+		align    = 'top-left',
+		elements = elements
 	}, function(data, menu)
 		if data.current.value == 'cloakroom' then
 			OpenCloakroomMenu()
@@ -32,24 +32,24 @@ function OpenAmbulanceActionsMenu()
 	end)
 end
 
+-- abre o menu de acoes 
+-- executa acoes como reviver etc 
 function OpenMobileAmbulanceActionsMenu()
-
+	
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mobile_ambulance_actions',
-	{
-		title		= _U('ambulance'),
-		align		= 'top-left',
-		elements	= {
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mobile_ambulance_actions', {
+		title    = _U('ambulance'),
+		align    = 'top-left',
+		elements = {
 			{label = _U('ems_menu'), value = 'citizen_interaction'}
 		}
 	}, function(data, menu)
 		if data.current.value == 'citizen_interaction' then
-			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'citizen_interaction',
-			{
-				title		= _U('ems_menu_title'),
-				align		= 'top-left',
-				elements	= {
+			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'citizen_interaction', {
+				title    = _U('ems_menu_title'),
+				align    = 'top-left',
+				elements = {
 					{label = _U('ems_menu_revive'), value = 'revive'},
 					{label = _U('ems_menu_small'), value = 'small'},
 					{label = _U('ems_menu_big'), value = 'big'},
@@ -177,45 +177,46 @@ function OpenMobileAmbulanceActionsMenu()
 	end)
 end
 
+-- teleporta para as coordenadas
 function FastTravel(coords, heading)
-	TeleportFadeEffect(PlayerPedId(), coords, heading)
-end
+	local playerPed = PlayerPedId()
 
-function TeleportFadeEffect(entity, coords, heading)
-	Citizen.CreateThread(function()
-		DoScreenFadeOut(800)
+	DoScreenFadeOut(800)
 
-		while not IsScreenFadedOut() do
-			Citizen.Wait(0)
+	while not IsScreenFadedOut() do
+		Citizen.Wait(500)
+	end
+
+	ESX.Game.Teleport(playerPed, coords, function()
+		DoScreenFadeIn(800)
+
+		if heading then
+			SetEntityHeading(playerPed, heading)
 		end
-
-		ESX.Game.Teleport(entity, coords, function()
-			DoScreenFadeIn(800)
-
-			if heading then
-				SetEntityHeading(entity, heading)
-			end
-		end)
 	end)
 end
 
--- Draw markers & Marker logic
+-- Logica para Draw marks
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
+		--busca coordenada do jogador
 		local playerCoords = GetEntityCoords(PlayerPedId())
-		local canSleep, isInMarker, hasExited = true, false, false
+		local letSleep, isInMarker, hasExited = true, false, false
 		local currentHospital, currentPart, currentPartNum
 
+		--Busca a configuração dos hospitais
 		for hospitalNum,hospital in pairs(Config.Hospitals) do
 
-			-- Ambulance Actions
+			-- Marker da ambulancia
 			for k,v in ipairs(hospital.AmbulanceActions) do
+				-- recebe a distancia entre o jogador e o 
 				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
 
+				--se estiver dentro da distancia configurada
 				if distance < Config.DrawDistance then
 					DrawMarker(Config.Marker.type, v, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, Config.Marker.rotate, nil, nil, false)
-					canSleep = false
+					letSleep = false
 				end
 
 				if distance < Config.Marker.x then
@@ -223,13 +224,13 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			-- Pharmacies
+			-- Remédios
 			for k,v in ipairs(hospital.Pharmacies) do
 				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
 
 				if distance < Config.DrawDistance then
 					DrawMarker(Config.Marker.type, v, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, Config.Marker.rotate, nil, nil, false)
-					canSleep = false
+					letSleep = false
 				end
 
 				if distance < Config.Marker.x then
@@ -243,7 +244,7 @@ Citizen.CreateThread(function()
 
 				if distance < Config.DrawDistance then
 					DrawMarker(v.Marker.type, v.Spawner, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, v.Marker.x, v.Marker.y, v.Marker.z, v.Marker.r, v.Marker.g, v.Marker.b, v.Marker.a, false, false, 2, v.Marker.rotate, nil, nil, false)
-					canSleep = false
+					letSleep = false
 				end
 
 				if distance < v.Marker.x then
@@ -257,7 +258,7 @@ Citizen.CreateThread(function()
 
 				if distance < Config.DrawDistance then
 					DrawMarker(v.Marker.type, v.Spawner, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, v.Marker.x, v.Marker.y, v.Marker.z, v.Marker.r, v.Marker.g, v.Marker.b, v.Marker.a, false, false, 2, v.Marker.rotate, nil, nil, false)
-					canSleep = false
+					letSleep = false
 				end
 
 				if distance < v.Marker.x then
@@ -271,7 +272,7 @@ Citizen.CreateThread(function()
 
 				if distance < Config.DrawDistance then
 					DrawMarker(v.Marker.type, v.From, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, v.Marker.x, v.Marker.y, v.Marker.z, v.Marker.r, v.Marker.g, v.Marker.b, v.Marker.a, false, false, 2, v.Marker.rotate, nil, nil, false)
-					canSleep = false
+					letSleep = false
 				end
 
 
@@ -280,13 +281,13 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			-- Fast Travels (Prompt)
+			-- teleporte para entrada no hospital
 			for k,v in ipairs(hospital.FastTravelsPrompt) do
 				local distance = GetDistanceBetweenCoords(playerCoords, v.From, true)
 
 				if distance < Config.DrawDistance then
 					DrawMarker(v.Marker.type, v.From, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, v.Marker.x, v.Marker.y, v.Marker.z, v.Marker.r, v.Marker.g, v.Marker.b, v.Marker.a, false, false, 2, v.Marker.rotate, nil, nil, false)
-					canSleep = false
+					letSleep = false
 				end
 
 				if distance < v.Marker.x then
@@ -294,28 +295,32 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			-- Logic for exiting & entering markers
-			if isInMarker and not HasAlreadyEnteredMarker or (isInMarker and (LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)) then
+		end
 
-				if
-					(LastHospital ~= nil and LastPart ~= nil and LastPartNum ~= nil) and
-					(LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
-				then
-					TriggerEvent('esx_ambulancejob:hasExitedMarker', LastHospital, LastPart, LastPartNum)
-					hasExited = true
-				end
+		-- Logic for exiting & entering markers
+		if isInMarker and not HasAlreadyEnteredMarker or (isInMarker and (LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)) then
 
-				HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum = true, currentHospital, currentPart, currentPartNum
-
-				TriggerEvent('esx_ambulancejob:hasEnteredMarker', currentHospital, currentPart, currentPartNum)
-
-			end
-
-			if not hasExited and not isInMarker and HasAlreadyEnteredMarker then
-				HasAlreadyEnteredMarker = false
+			if
+				(LastHospital ~= nil and LastPart ~= nil and LastPartNum ~= nil) and
+				(LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
+			then
 				TriggerEvent('esx_ambulancejob:hasExitedMarker', LastHospital, LastPart, LastPartNum)
+				hasExited = true
 			end
 
+			HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum = true, currentHospital, currentPart, currentPartNum
+
+			TriggerEvent('esx_ambulancejob:hasEnteredMarker', currentHospital, currentPart, currentPartNum)
+
+		end
+
+		if not hasExited and not isInMarker and HasAlreadyEnteredMarker then
+			HasAlreadyEnteredMarker = false
+			TriggerEvent('esx_ambulancejob:hasExitedMarker', LastHospital, LastPart, LastPartNum)
+		end
+
+		if letSleep then
+			Citizen.Wait(500)
 		end
 	end
 end)
@@ -383,9 +388,9 @@ Citizen.CreateThread(function()
 			end
 
 		elseif ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'ambulance' and not IsDead then
-			if IsControlJustReleased(0, Keys['F6']) then
-				OpenMobileAmbulanceActionsMenu()
-			end
+		--	if IsControlJustReleased(0, Keys['F6']) then
+		--		OpenMobileAmbulanceActionsMenu()
+		--	end
 		else
 			Citizen.Wait(500)
 		end
@@ -418,10 +423,9 @@ AddEventHandler('esx_ambulancejob:putInVehicle', function()
 end)
 
 function OpenCloakroomMenu()
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'cloakroom',
-	{
-		title		= _U('cloakroom'),
-		align		= 'top-left',
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'cloakroom', {
+		title    = _U('cloakroom'),
+		align    = 'top-left',
 		elements = {
 			{label = _U('ems_clothes_civil'), value = 'citizen_wear'},
 			{label = _U('ems_clothes_ems'), value = 'ambulance_wear'},
@@ -546,6 +550,7 @@ function OpenVehicleSpawnerMenu(hospital, partNum)
 
 end
 
+--guarda os veículos próximos
 function StoreNearbyVehicle(playerCoords)
 	local vehicles, vehiclePlates = ESX.Game.GetVehiclesInArea(playerCoords, 30.0), {}
 
@@ -627,8 +632,10 @@ function GetAvailableVehicleSpawnPoint(hospital, part, partNum)
 	end
 end
 
+--abre o menu para selecionar o helicoptero
 function OpenHelicopterSpawnerMenu(hospital, partNum)
 	local playerCoords = GetEntityCoords(PlayerPedId())
+	ESX.PlayerData = ESX.GetPlayerData()
 	local elements = {
 		{label = _U('helicopter_garage'), action = 'garage'},
 		{label = _U('helicopter_store'), action = 'store_garage'},
@@ -727,6 +734,7 @@ function OpenHelicopterSpawnerMenu(hospital, partNum)
 
 end
 
+
 function OpenShopMenu(elements, restoreCoords, shopCoords)
 	local playerPed = PlayerPedId()
 	isInShopMenu = true
@@ -737,8 +745,7 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 		elements = elements
 	}, function(data, menu)
 
-		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop_confirm',
-		{
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop_confirm', {
 			title    = _U('vehicleshop_confirm', data.current.name, data.current.price),
 			align    = 'top-left',
 			elements = {
@@ -819,6 +826,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
+--deleta veículos spawnados
 function DeleteSpawnedVehicles()
 	while #spawnedVehicles > 0 do
 		local vehicle = spawnedVehicles[1]
@@ -827,6 +835,7 @@ function DeleteSpawnedVehicles()
 	end
 end
 
+--espera ate veiculo ser carregado
 function WaitForVehicleToLoad(modelHash)
 	modelHash = (type(modelHash) == 'number' and modelHash or GetHashKey(modelHash))
 
@@ -867,8 +876,7 @@ end
 function OpenPharmacyMenu()
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'pharmacy',
-	{
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'pharmacy', {
 		title    = _U('pharmacy_menu_title'),
 		align    = 'top-left',
 		elements = {
@@ -906,7 +914,7 @@ function WarpPedInClosestVehicle(ped)
 end
 
 RegisterNetEvent('esx_ambulancejob:heal')
-AddEventHandler('esx_ambulancejob:heal', function(healType)
+AddEventHandler('esx_ambulancejob:heal', function(healType, quiet)
 	local playerPed = PlayerPedId()
 	local maxHealth = GetEntityMaxHealth(playerPed)
 
@@ -918,5 +926,13 @@ AddEventHandler('esx_ambulancejob:heal', function(healType)
 		SetEntityHealth(playerPed, maxHealth)
 	end
 
-	ESX.ShowNotification(_U('healed'))
+	if not quiet then
+		ESX.ShowNotification(_U('healed'))
+	end
+end)
+
+
+RegisterNetEvent('NB:openMenuAmbulance')
+AddEventHandler('NB:openMenuAmbulance', function()
+	OpenMobileAmbulanceActionsMenu()
 end)
