@@ -140,9 +140,9 @@ curNeedle, curTachometer, curSpeedometer, curFuelGauge, curAlpha = "needle_day",
 RPM, degree, blinkertick, showBlinker = 0, 0, 0, false
 overwriteChecks = false -- debug value to display all icons
 Citizen.CreateThread(function()
-	TriggerEvent('chat:addSuggestion', '/togglespeedo', 'Mostrar/Esconder velocímetro' )
-	TriggerEvent('chat:addSuggestion', '/speedoskins', 'Mostrar todas as skins disponíveis' )
-	TriggerEvent('chat:addSuggestion', '/speedoskin', 'Mudar a skin do velocímetro', { {name='skin', help="the skin name"} } )
+	TriggerEvent('chat:addSuggestion', '/togglespeedo', 'show/hide speedometer' )
+	TriggerEvent('chat:addSuggestion', '/speedoskins', 'show all available speedometer skins' )
+	TriggerEvent('chat:addSuggestion', '/speedoskin', 'change the speedometer skin', { {name='skin', help="the skin name"} } )
 	while true do
 		Citizen.Wait(0)
 		if overwriteAlpha then curAlpha = 0 end
