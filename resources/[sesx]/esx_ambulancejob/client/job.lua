@@ -3,7 +3,6 @@ local HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum
 local IsBusy = false
 local spawnedVehicles, isInShopMenu = {}, false
 
---funcao para abrir o menu do vestiário
 function OpenAmbulanceActionsMenu()
 	local elements = {
 		{label = _U('cloakroom'), value = 'cloakroom'}
@@ -32,10 +31,8 @@ function OpenAmbulanceActionsMenu()
 	end)
 end
 
--- abre o menu de acoes 
--- executa acoes como reviver etc 
 function OpenMobileAmbulanceActionsMenu()
-	
+
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mobile_ambulance_actions', {
@@ -177,7 +174,6 @@ function OpenMobileAmbulanceActionsMenu()
 	end)
 end
 
--- teleporta para as coordenadas
 function FastTravel(coords, heading)
 	local playerPed = PlayerPedId()
 
@@ -196,24 +192,20 @@ function FastTravel(coords, heading)
 	end)
 end
 
--- Logica para Draw marks
+-- Draw markers & Marker logic
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		--busca coordenada do jogador
 		local playerCoords = GetEntityCoords(PlayerPedId())
 		local letSleep, isInMarker, hasExited = true, false, false
 		local currentHospital, currentPart, currentPartNum
 
-		--Busca a configuração dos hospitais
 		for hospitalNum,hospital in pairs(Config.Hospitals) do
 
-			-- Marker da ambulancia
+			-- Ambulance Actions
 			for k,v in ipairs(hospital.AmbulanceActions) do
-				-- recebe a distancia entre o jogador e o 
 				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
 
-				--se estiver dentro da distancia configurada
 				if distance < Config.DrawDistance then
 					DrawMarker(Config.Marker.type, v, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, Config.Marker.rotate, nil, nil, false)
 					letSleep = false
@@ -224,7 +216,7 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			-- Remédios
+			-- Pharmacies
 			for k,v in ipairs(hospital.Pharmacies) do
 				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
 
@@ -281,7 +273,7 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			-- teleporte para entrada no hospital
+			-- Fast Travels (Prompt)
 			for k,v in ipairs(hospital.FastTravelsPrompt) do
 				local distance = GetDistanceBetweenCoords(playerCoords, v.From, true)
 
@@ -388,9 +380,9 @@ Citizen.CreateThread(function()
 			end
 
 		elseif ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'ambulance' and not IsDead then
-		--	if IsControlJustReleased(0, Keys['F6']) then
-		--		OpenMobileAmbulanceActionsMenu()
-		--	end
+			if IsControlJustReleased(0, Keys['F6']) then
+				OpenMobileAmbulanceActionsMenu()
+			end
 		else
 			Citizen.Wait(500)
 		end
@@ -550,7 +542,6 @@ function OpenVehicleSpawnerMenu(hospital, partNum)
 
 end
 
---guarda os veículos próximos
 function StoreNearbyVehicle(playerCoords)
 	local vehicles, vehiclePlates = ESX.Game.GetVehiclesInArea(playerCoords, 30.0), {}
 
@@ -632,7 +623,6 @@ function GetAvailableVehicleSpawnPoint(hospital, part, partNum)
 	end
 end
 
---abre o menu para selecionar o helicoptero
 function OpenHelicopterSpawnerMenu(hospital, partNum)
 	local playerCoords = GetEntityCoords(PlayerPedId())
 	ESX.PlayerData = ESX.GetPlayerData()
@@ -734,7 +724,6 @@ function OpenHelicopterSpawnerMenu(hospital, partNum)
 
 end
 
-
 function OpenShopMenu(elements, restoreCoords, shopCoords)
 	local playerPed = PlayerPedId()
 	isInShopMenu = true
@@ -826,7 +815,6 @@ Citizen.CreateThread(function()
 	end
 end)
 
---deleta veículos spawnados
 function DeleteSpawnedVehicles()
 	while #spawnedVehicles > 0 do
 		local vehicle = spawnedVehicles[1]
@@ -835,7 +823,6 @@ function DeleteSpawnedVehicles()
 	end
 end
 
---espera ate veiculo ser carregado
 function WaitForVehicleToLoad(modelHash)
 	modelHash = (type(modelHash) == 'number' and modelHash or GetHashKey(modelHash))
 
@@ -929,10 +916,4 @@ AddEventHandler('esx_ambulancejob:heal', function(healType, quiet)
 	if not quiet then
 		ESX.ShowNotification(_U('healed'))
 	end
-end)
-
-
-RegisterNetEvent('NB:openMenuAmbulance')
-AddEventHandler('NB:openMenuAmbulance', function()
-	OpenMobileAmbulanceActionsMenu()
 end)
