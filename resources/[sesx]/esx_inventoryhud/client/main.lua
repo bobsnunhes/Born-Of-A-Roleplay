@@ -143,6 +143,7 @@ function shouldSkipAccount (accountName)
 end
 
 function loadPlayerInventory()
+    ESX.UI.Menu.CloseAll()
     local PlayerData
     if anotherPlayerInventory then
         PlayerData = anotherPlayer
