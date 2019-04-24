@@ -113,6 +113,7 @@ Citizen.CreateThread(function()
 			engineHealth = GetVehicleEngineHealth(veh)
 			OilLevel = GetVehicleOilLevel(veh)
 			FuelLevel = GetVehicleFuelLevel(veh)
+			Citizen.Trace("DEBUG SPEED FUEL = " .. FuelLevel)
 			_,lightson,highbeams = GetVehicleLightsState(veh)
 			MaxFuelLevel = Citizen.InvokeNative(0x642FC12F, veh, "CHandlingData", "fPetrolTankVolume", Citizen.ReturnResultAnyway(), Citizen.ResultAsFloat())
 		end
@@ -256,8 +257,9 @@ Citizen.CreateThread(function()
 			end
 			DrawSprite(cst.ytdName, curNeedle, cst.centerCoords[1]+cst.SpeedoNeedleLoc[1],cst.centerCoords[2]+cst.SpeedoNeedleLoc[2],cst.SpeedoNeedleLoc[3],cst.SpeedoNeedleLoc[4],-5.00001+degree, 255, 255, 255, curAlpha)
 			if showFuelGauge and FuelLevel and MaxFuelLevel ~= 0 then
+				local empty = 80.0 -- valor do tamque vazio para o indicador
 				DrawSprite(cst.ytdName, cst.FuelGauge or curFuelGauge, cst.centerCoords[1]+cst.FuelBGLoc[1],cst.centerCoords[2]+cst.FuelBGLoc[2],cst.FuelBGLoc[3],cst.FuelBGLoc[4], 0.0, 255,255,255, curAlpha)
-				DrawSprite(cst.ytdName, cst.FuelNeedle or curNeedle, cst.centerCoords[1]+cst.FuelGaugeLoc[1],cst.centerCoords[2]+cst.FuelGaugeLoc[2],cst.FuelGaugeLoc[3],cst.FuelGaugeLoc[4],80.0+FuelLevel/MaxFuelLevel*110, 255, 255, 255, curAlpha)
+				DrawSprite(cst.ytdName, cst.FuelNeedle or curNeedle, cst.centerCoords[1]+cst.FuelGaugeLoc[1],cst.centerCoords[2]+cst.FuelGaugeLoc[2],cst.FuelGaugeLoc[3],cst.FuelGaugeLoc[4], (empty + FuelLevel) + 15.0  , 255, 255, 255, curAlpha)
 			end
 		end
 	end

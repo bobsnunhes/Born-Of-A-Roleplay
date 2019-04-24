@@ -25,8 +25,10 @@ local IsFueling 			  = false
 local IsFuelingWithJerryCan   = false
 local InBlacklistedVehicle	  = false
 local NearVehicleWithJerryCan = false
-local price 				  = 1.7
-local cash 					  = 0
+local price 				  = 0	 --preco final do abastecimento 
+local cash 					  = 0	 --dinheiro do player
+local fixedPrice 			  = 2	 --preço fixo da gasolina
+local fixedTax				  = 1.20 --impostos
 
 function DrawText3Ds(x,y,z, text)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
@@ -118,14 +120,26 @@ Citizen.CreateThread(function()
 				local vehicle  = GetPlayersLastVehicle()
 				local position = GetEntityCoords(vehicle)
 				local fuel 	   = round(GetVehicleFuelLevel(vehicle), 1)
+				local pumpHeight = 1.45
 				
 				if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-					DrawText3D2(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'] + 1.8, "~r~Saia do veículo para abastecer.")
+					DrawText3D2(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'] + pumpHeight, "~r~Saia do veículo para abastecer.")
 				elseif IsFueling then
 					
 
-					DrawText3Ds(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'], "Pressione ~g~G ~w~ para cancelar o abastecimento. $~r~" .. price .. " ~w~+  taxas")
-					DrawText3Ds(position.x, position.y, position.z + 0.5, fuel .. "%")
+					DrawText3D2(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'] + pumpHeight, "Pressione ~g~G ~w~ para cancelar o abastecimento. R$~r~" .. price .. " ~w~+ " .. (fixedTax - 1) * 100 .. "%" )
+					local fuelPercentColor = ""
+					if fuel >= 0 and fuel <= 10 then 
+						fuelPercentColor = "~r~"
+					elseif fuel > 10 and fuel < 50 then 
+						fuelPercentColor = "~o~" 
+					elseif fuel >= 50 and fuel < 75 then 
+						fuelPercentColor = "~y~"   						
+					else 
+						fuelPercentColor = "~g~"
+					end 
+
+					DrawText3D2(position.x, position.y, position.z + pumpHeight, fuelPercentColor .. fuel .. "%")
 					
 					DisableControlAction(0, 0, true) -- Changing view (V)
 					DisableControlAction(0, 22, true) -- Jumping (SPACE)
@@ -151,6 +165,8 @@ Citizen.CreateThread(function()
 						loadAnimDict("reaction@male_stand@small_intro@forward")
 						TaskPlayAnim(GetPlayerPed(-1), "reaction@male_stand@small_intro@forward", "react_forward_small_intro_a", 1.0, 2, -1, 49, 0, 0, 0, 0)
 
+						price = price * fixedTax
+
 						TriggerServerEvent('LegacyFuel:PayFuel', price)
 						Citizen.Wait(2500)
 						ClearPedTasksImmediately(GetPlayerPed(-1))
@@ -161,11 +177,11 @@ Citizen.CreateThread(function()
 						IsFueling = false
 					end
 				elseif fuel > 95.0 then
-					DrawText3Ds(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'], "O tanque está cheio.")
+					DrawText3D2(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'] + pumpHeight, "O tanque está cheio.")
 				elseif cash <= 0 then
-					DrawText3Ds(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'], "Dinheiro insuficiente")
+					DrawText3D2(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'] + pumpHeight, "Dinheiro insuficiente")
 				else
-					DrawText3Ds(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'], "Pressione ~g~G ~w~para abastecer o veículo. $~r~0.5/~w~litros + taxas")
+					DrawText3D2(pumpLoc['x'], pumpLoc['y'], pumpLoc['z'] + pumpHeight, "Pressione ~g~G ~w~para abastecer o veículo. R$~r~".. fixedPrice .."/~w~litros + " .. (fixedTax - 1) * 100 .. "%")
 					
 					if IsControlJustReleased(0, 47) then
 						local vehicle = GetPlayersLastVehicle()
@@ -256,7 +272,8 @@ Citizen.CreateThread(function()
 			local fuelthis = integer / 10
 			local newfuel  = fuel + fuelthis
 
-			price = price + fuelthis * 0.5 * 1.1
+			--price = price + fuelthis * 0.5 * 1.1
+			price = price + (fuelthis * fixedPrice)
 
 			if cash >= price then
 				TriggerServerEvent('LegacyFuel:CheckServerFuelTable', plate)
@@ -279,6 +296,8 @@ Citizen.CreateThread(function()
 					SetVehicleFuelLevel(vehicle, 100.0)
 					loadAnimDict("reaction@male_stand@small_intro@forward")
 					TaskPlayAnim(GetPlayerPed(-1), "reaction@male_stand@small_intro@forward", "react_forward_small_intro_a", 1.0, 2, -1, 49, 0, 0, 0, 0)
+
+					price = price * fixedTax
 
 					TriggerServerEvent('LegacyFuel:PayFuel', price)
 					Citizen.Wait(2500)
@@ -304,6 +323,8 @@ Citizen.CreateThread(function()
 				SetVehicleFuelLevel(vehicle, newfuel)
 				loadAnimDict("reaction@male_stand@small_intro@forward")
 				TaskPlayAnim(GetPlayerPed(-1), "reaction@male_stand@small_intro@forward", "react_forward_small_intro_a", 1.0, 2, -1, 49, 0, 0, 0, 0)
+
+				price = price * fixedTax
 
 				TriggerServerEvent('LegacyFuel:PayFuel', price)
 				Citizen.Wait(2500)
