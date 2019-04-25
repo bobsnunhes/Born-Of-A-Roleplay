@@ -205,19 +205,6 @@ Citizen.CreateThread(function ()
   end
 end)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 RegisterNetEvent("gcPhone:forceOpenPhone")
 AddEventHandler("gcPhone:forceOpenPhone", function(_myPhoneNumber)
   if menuIsOpen == false then
@@ -256,13 +243,22 @@ AddEventHandler("gcPhone:receiveMessage", function(message)
   -- SendNUIMessage({event = 'updateMessages', messages = messages})
   SendNUIMessage({event = 'newMessage', message = message})
   table.insert(messages, message)
+  
   if message.owner == 0 then
-    local text = '~o~Nouveau message'
+    local text = '~o~Nova mensagem'
     if ShowNumberNotification == true then
-      text = '~o~Nouveau message du ~y~'.. message.transmitter
+      local transmitter2 = ""
+
+      if message.transmitter == 'police' then 
+        transmitter2 = 'Polícia'
+      else 
+        transmitter2 = message.transmitter
+      end
+
+      text = '~o~Nova mensagem de ~y~'.. transmitter2
       for _,contact in pairs(contacts) do
         if contact.number == message.transmitter then
-          text = '~o~Nouveau message de ~g~'.. contact.display
+          text = '~o~Nova mensagem de ~g~'.. contact.display
           break
         end
       end

@@ -5,7 +5,7 @@
 
 math.randomseed(os.time()) 
 
---- Pour les numero du style XXX-XXXX
+--- Para números de estilo XXX-XXXX
 function getPhoneRandomNumber()
     local numBase0 = math.random(100,999)
     local numBase1 = math.random(0,9999)
@@ -364,6 +364,7 @@ end)
 
 RegisterServerEvent('gcPhone:internal_startCall')
 AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtcOffer, extraData)
+    Citizen.Trace("DEBUG = phone number = " .. phone_number)
     if FixePhone[phone_number] ~= nil then
         onCallFixePhone(source, phone_number, rtcOffer, extraData)
         return

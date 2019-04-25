@@ -68,7 +68,6 @@ body, html {
 }
 
 .group_set {
-	display: inline-block;
 	float: left;
 	padding: 10px;
 	width: 278px;
@@ -142,8 +141,7 @@ body, html {
 }
 
 #close {
-	display: inline-block;
-	float: right;
+	float:right;
 	padding: 5px;
 	padding-right: 10px;
 	color: rgb(255, 0, 0);
