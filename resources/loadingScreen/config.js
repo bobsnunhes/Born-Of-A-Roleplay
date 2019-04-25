@@ -7,7 +7,7 @@ var config = {
     /* Insert the Youtube Video ID below */
     "videoID": "Ln2Wf7slbHA", // Somente videos sem copyright
     /* Music Volume (0%-100%) | Lower is Quieter, Higher is Louder */
-    "musicVolume": 15,
+    "musicVolume": 5,
     "text": {
         "title": "BORN OF A ROLEPLAY",
         "link": "discord.gg/",
