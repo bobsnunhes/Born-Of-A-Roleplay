@@ -4,7 +4,7 @@ local ShopItems = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 MySQL.ready(function()
-	MySQL.Async.fetchAll('SELECT * FROM shops LEFT JOIN items ON items.name = shops.item', {}, function(shopResult)
+	MySQL.Async.fetchAll('SELECT items.name, shops.store, items.limit, items.label, shops.price FROM shops LEFT JOIN items ON items.id = shops.item_id', {}, function(shopResult)
 		for i=1, #shopResult, 1 do
 			if shopResult[i].name then
 				if ShopItems[shopResult[i].store] == nil then
@@ -17,12 +17,12 @@ MySQL.ready(function()
 
 				table.insert(ShopItems[shopResult[i].store], {
 					label = shopResult[i].label,
-					item  = shopResult[i].item,
+					item  = shopResult[i].name,
 					price = shopResult[i].price,
 					limit = shopResult[i].limit
 				})
 			else
-				print(('esx_shops: invalid item "%s" found!'):format(shopResult[i].item))
+				print(('esx_shops: invalid item "%s" found!'):format(shopResult[i].name))
 			end
 		end
 	end)
@@ -51,7 +51,7 @@ AddEventHandler('esx_shops:buyItem', function(itemName, amount, zone)
 	local itemLabel = ''
 
 	for i=1, #ShopItems[zone], 1 do
-		if ShopItems[zone][i].item == itemName then
+		if ShopItems[zone][i].name == itemName then
 			price = ShopItems[zone][i].price
 			itemLabel = ShopItems[zone][i].label
 			break

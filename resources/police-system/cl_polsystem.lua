@@ -177,7 +177,7 @@ Citizen.CreateThread(function()
             elseif WarMenu.MenuButton('←←← Back','menu') then
             end
             WarMenu.Display()
-        elseif IsControlJustReleased(0, 166) then -- F5 by default --
+        elseif IsControlJustReleased(0, 81) then -- "." by default --
             if cop >= 1 then
                 WarMenu.OpenMenu('menu')
             end

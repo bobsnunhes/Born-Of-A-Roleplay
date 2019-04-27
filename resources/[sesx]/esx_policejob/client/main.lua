@@ -434,8 +434,8 @@ function OpenPoliceActionsMenu()
 		elements = {
 			{label = _U('citizen_interaction'),	value = 'citizen_interaction'},
 			{label = _U('vehicle_interaction'),	value = 'vehicle_interaction'},
-      {label = _U('object_spawner'),		value = 'object_spawner'}
-      -- {label = "Jail Menu",               value = 'jail_menu'}
+      {label = _U('object_spawner'),		value = 'object_spawner'}--,
+      --{label = "Jail Menu",               value = 'jail_menu'}
 		}
   }, function(data, menu)
     

@@ -72,7 +72,7 @@
                     "title": "Numero Padrão",
                     "eventName": "gcphone:autoCallNumber",
                     "type": {
-                        "number": "911"
+                        "number": "190"
                     }
                 }
             ]
@@ -85,6 +85,17 @@
                 "eventName": "esx_addons_gcphone:call",
                 "type": {
                     "number": "ambulance"
+                }
+            }]
+        },
+        {
+            "display": "Táxi",
+            "backgroundColor": "yellow",
+            "subMenu": [{
+                "title": "Envie uma mensagem",
+                "eventName": "esx_addons_gcphone:call",
+                "type": {
+                    "number": "taxi"
                 }
             }]
         }
@@ -100,6 +111,12 @@
             "display": "Polícia",
             "backgroundColor": "blue",
             "letter": "J"
+        },
+        {
+            "number": "taxi",
+            "display": "Táxi",
+            "backgroundColor": "yellow",
+            "letter": "T"
         }
     ],
 
