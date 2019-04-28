@@ -5,7 +5,7 @@
 
 math.randomseed(os.time()) 
 
---- Para números de estilo XXX-XXXX
+--- Pour les numero du style XXX-XXXX
 function getPhoneRandomNumber()
     local numBase0 = math.random(100,999)
     local numBase1 = math.random(0,9999)
@@ -364,7 +364,6 @@ end)
 
 RegisterServerEvent('gcPhone:internal_startCall')
 AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtcOffer, extraData)
-    Citizen.Trace("DEBUG = phone number = " .. phone_number)
     if FixePhone[phone_number] ~= nil then
         onCallFixePhone(source, phone_number, rtcOffer, extraData)
         return
@@ -589,7 +588,7 @@ end)
 
 
 AddEventHandler('onMySQLReady', function ()
-    MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 5)")
+    MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")
 end)
 
 --====================================================================================
