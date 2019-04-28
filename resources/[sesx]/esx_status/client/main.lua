@@ -62,7 +62,7 @@ AddEventHandler('esx_status:load', function(status)
 			})
 		
 
-		TriggerEvent('esx_ladderhud:updateBasics', GetStatusData(true)) --Adicionado para usar barra de status do esx_ladderhud
+			TriggerEvent('esx_customui:updateStatus', GetStatusData(true)) --Adicionado para usar barra de status do esx_ladderhud
 	    Citizen.Wait(Config.TickTime)
 
 	  end
