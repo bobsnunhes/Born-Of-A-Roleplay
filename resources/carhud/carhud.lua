@@ -78,7 +78,7 @@ local UI = {
 -- Move the entire Race Mode or Race Mode2 or RaceMode3
 local RM = { 
 
-	x =  0.050 ,	-- Base Screen Coords 	+ 	 x
+	x =  0.000 ,	-- Base Screen Coords 	+ 	 x
 	y = -0.001 ,	-- Base Screen Coords 	+ 	-y
 
 }
@@ -1104,7 +1104,8 @@ Citizen.CreateThread(function()
 				end
 			else
 				if HUD.Plate and PedHeli == false and PedPlane == false and PedBoat == false then
-					drawTxt(UI.x + 0.61, 	UI.y + 1.385, 1.0,1.0,0.55, "~w~" .. PlateVeh, 255, 255, 255, 255) 
+					--drawTxt(UI.x + 0.61, 	UI.y + 1.385, 1.0,1.0,0.55, "~w~" .. PlateVeh, 255, 255, 255, 255) 
+					drawTxt(RM.x + 0.954, RM.y + 0.821, 0.006,1.0,0.55, "~w~" .. PlateVeh, 255, 255, 255, 255) 					
 				end
 				if HUD.ParkIndicator and PedHeli == false and PedPlane == false and PedBoat == false then
 

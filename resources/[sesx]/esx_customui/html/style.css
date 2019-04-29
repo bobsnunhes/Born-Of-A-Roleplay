@@ -12,7 +12,8 @@
     /* Default: 350px */
     bottom: 20px;
     /* Default: 20px */
-    left: 18.2%;
+    top: 10%;
+    left: 87.0%;
     /* (18.2% Right Side of Map) | (82.0% Right Side of Screen) | (2.7% Above Map)  */
     bottom: 1.85;
     /* (1.85% Default-Fix for all 16:9 resolutions) | (21.0% Above Map) */
@@ -32,7 +33,7 @@
     height: 30px;
     position: relative;
     margin-bottom: 7px;
-    //box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    /* box-shadow: 0 10px 15px rgba(0,0,0,0.3); */
 }
 
 .stat .icon {

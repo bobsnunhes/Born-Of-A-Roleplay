@@ -153,13 +153,15 @@ Citizen.CreateThread(function()
 					else
 						curAlpha = curAlpha+5
 					end
+					DisplayRadar(true) -- Roberto - Mostra / esconde radar quando entra/sai do veículo
 			elseif not inVehicle then
-					if curAlpha <= 0 then
-						curAlpha = 0
-					else
-						curAlpha = curAlpha-5
-					end
+				if curAlpha <= 0 then
+					curAlpha = 0
+				else
+					curAlpha = curAlpha-5
 				end
+				DisplayRadar(false) -- Roberto - Mostra / esconde radar quando entra/sai do veículo
+			end
 		end
 
 		if not HasStreamedTextureDictLoaded(cst.ytdName) then
