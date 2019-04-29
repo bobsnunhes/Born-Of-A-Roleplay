@@ -84,7 +84,7 @@ Citizen.CreateThread(function()
 		RequestIpl("CS3_07_MPGates")
 		
 	-- Pillbox hospital:
-		RequestIpl("rc12b_default")
+		--RequestIpl("rc12b_default")
 
 	-- Josh's house: -1117.1632080078, 303.090698, 66.52217
 		RequestIpl("bh1_47_joshhse_unburnt")
