@@ -1,26 +1,23 @@
 Config                            = {}
 
---distancia padra, utilizada para saber se usuário chegou perto o bastante de um local
 Config.DrawDistance               = 100.0
 
 Config.Marker                     = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
 
-Config.ReviveReward               = 150  -- Recompensa para reviver
-Config.AntiCombatLog              = false -- enable anti-combat logging?
+Config.ReviveReward               = 700  -- revive reward, set to 0 if you don't want it enabled
+Config.AntiCombatLog              = true -- enable anti-combat logging?
 Config.LoadIpl                    = true -- disable if you're using fivem-ipl or other IPL loaders
 
---traducao
 Config.Locale                     = 'br'
 
 local second = 1000
 local minute = 60 * second
 
-Config.EarlyRespawnTimer          = 2 * minute  -- Tempo até que o respawn esteja disponível (minutos)
-Config.BleedoutTimer              = 10 * minute -- Tempo até o jogador morrer (minutos)
+Config.EarlyRespawnTimer          = 2 * minute  -- Time til respawn is available
+Config.BleedoutTimer              = 10 * minute -- Time til the player bleeds out
 
-Config.EnablePlayerManagement     = true
+Config.EnablePlayerManagement     = false
 
---itens que o jogador perde depois de morrer
 Config.RemoveWeaponsAfterRPDeath  = true
 Config.RemoveCashAfterRPDeath     = true
 Config.RemoveItemsAfterRPDeath    = true
@@ -29,13 +26,10 @@ Config.RemoveItemsAfterRPDeath    = true
 Config.EarlyRespawnFine           = false
 Config.EarlyRespawnFineAmount     = 5000
 
---ponto de respawn do jogador
 Config.RespawnPoint = { coords = vector3(341.0, -1397.3, 32.5), heading = 48.5 }
 
---Configuração dos hospitais
 Config.Hospitals = {
 
-  --Hospital principal
 	CentralLosSantos = {
 
 		Blip = {
@@ -46,7 +40,7 @@ Config.Hospitals = {
 		},
 
 		AmbulanceActions = {
-			vector3(270.5, -1363.0, 23.5) 
+			vector3(270.5, -1363.0, 23.5)
 		},
 
 		Pharmacies = {
@@ -138,19 +132,19 @@ Config.Hospitals = {
 Config.AuthorizedVehicles = {
 
 	ambulance = {
-		{ model = 'ambulance', label = 'Ambulance Van', price = 0}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 5000}
 	},
 
 	doctor = {
-		{ model = 'ambulance', label = 'Ambulance Van', price = 0}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 4500}
 	},
 
 	chief_doctor = {
-		{ model = 'ambulance', label = 'Ambulance Van', price = 0}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 3000}
 	},
 
 	boss = {
-		{ model = 'ambulance', label = 'Ambulance Van', price = 0}
+		{ model = 'ambulance', label = 'Ambulance Van', price = 2000}
 	}
 
 }
@@ -160,17 +154,17 @@ Config.AuthorizedHelicopters = {
 	ambulance = {},
 
 	doctor = {
-		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 0 }
+		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 150000 }
 	},
 
 	chief_doctor = {
-		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 0 },
-		{ model = 'seasparrow', label = 'Sea Sparrow', price = 0 }
+		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 150000 },
+		{ model = 'seasparrow', label = 'Sea Sparrow', price = 300000 }
 	},
 
 	boss = {
-		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 0 },
-		{ model = 'seasparrow', label = 'Sea Sparrow', price = 0 }
+		{ model = 'buzzard2', label = 'Nagasaki Buzzard', price = 10000 },
+		{ model = 'seasparrow', label = 'Sea Sparrow', price = 250000 }
 	}
 
 }

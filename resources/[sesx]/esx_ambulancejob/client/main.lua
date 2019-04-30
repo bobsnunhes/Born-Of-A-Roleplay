@@ -60,7 +60,7 @@ AddEventHandler('playerSpawned', function()
 	end
 end)
 
--- Cria os blips do hospital
+-- Create blips
 Citizen.CreateThread(function()
 	for k,v in pairs(Config.Hospitals) do
 		local blip = AddBlipForCoord(v.Blip.coords)
@@ -76,7 +76,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
--- desabilita teclas quanto morre
+-- Disable most inputs when dead
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
@@ -92,7 +92,6 @@ Citizen.CreateThread(function()
 	end
 end)
 
--- acoes disparadas quando o jogador morre, ex: setar o status de morte ao jogador
 function OnPlayerDeath()
 	IsDead = true
 	ESX.UI.Menu.CloseAll()
@@ -104,7 +103,6 @@ function OnPlayerDeath()
 	StartScreenEffect('DeathFailOut', 0, false)
 end
 
--- evento - dispara quando o jogador usa algum item
 RegisterNetEvent('esx_ambulancejob:useItem')
 AddEventHandler('esx_ambulancejob:useItem', function(itemName)
 	ESX.UI.Menu.CloseAll()
