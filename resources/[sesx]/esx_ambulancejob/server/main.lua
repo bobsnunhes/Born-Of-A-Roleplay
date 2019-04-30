@@ -116,10 +116,10 @@ ESX.RegisterServerCallback('esx_ambulancejob:buyJobVehicle', function(source, cb
 	local price = getPriceFromHash(vehicleProps.model, xPlayer.job.grade_name, type)
 
 	-- vehicle model not found
-	if price == 0 then
-		print(('esx_ambulancejob: %s attempted to exploit the shop! (invalid vehicle model)'):format(xPlayer.identifier))
-		cb(false)
-	end
+	-- if price == 0 then
+	-- 	print(('esx_ambulancejob: %s attempted to exploit the shop! (invalid vehicle model)'):format(xPlayer.identifier))
+	-- 	cb(false)
+	-- end
 
 	if xPlayer.getMoney() >= price then
 		xPlayer.removeMoney(price)

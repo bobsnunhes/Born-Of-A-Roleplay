@@ -108,7 +108,6 @@ Citizen.CreateThread(function()
 				vprox = "whisper"
 			end
 			
-			Citizen.Trace("DEBUG - prox = " .. prox)
 			NetworkSetTalkerProximity(prox)
 			SendNUIMessage({action = "setProximity", value = vprox})
 		end

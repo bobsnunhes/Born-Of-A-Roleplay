@@ -269,7 +269,8 @@ Citizen.CreateThread(function()
 
 
 				if distance < v.Marker.x then
-					FastTravel(v.To.coords, v.To.heading)
+					--FastTravel(v.To.coords, v.To.heading)
+					isInMarker, currentHospital, currentPart, currentPartNum = true, hospitalNum, 'FastTravels', k
 				end
 			end
 
@@ -291,7 +292,7 @@ Citizen.CreateThread(function()
 
 		-- Logic for exiting & entering markers
 		if isInMarker and not HasAlreadyEnteredMarker or (isInMarker and (LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)) then
-
+			
 			if
 				(LastHospital ~= nil and LastPart ~= nil and LastPartNum ~= nil) and
 				(LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
@@ -301,7 +302,6 @@ Citizen.CreateThread(function()
 			end
 
 			HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum = true, currentHospital, currentPart, currentPartNum
-
 			TriggerEvent('esx_ambulancejob:hasEnteredMarker', currentHospital, currentPart, currentPartNum)
 
 		end
@@ -341,6 +341,13 @@ AddEventHandler('esx_ambulancejob:hasEnteredMarker', function(hospital, part, pa
 			CurrentAction = part
 			CurrentActionMsg = travelItem.Prompt
 			CurrentActionData = {to = travelItem.To.coords, heading = travelItem.To.heading}
+		elseif part == 'FastTravels' then
+			local travelItem = Config.Hospitals[hospital][part][partNum]
+
+			CurrentAction = part
+			CurrentActionMsg = travelItem.Prompt
+			CurrentActionData = {to = travelItem.To.coords, heading = travelItem.To.heading}
+			
 		end
 	end
 end)
@@ -372,6 +379,8 @@ Citizen.CreateThread(function()
 				elseif CurrentAction == 'Helicopters' then
 					OpenHelicopterSpawnerMenu(CurrentActionData.hospital, CurrentActionData.partNum)
 				elseif CurrentAction == 'FastTravelsPrompt' then
+					FastTravel(CurrentActionData.to, CurrentActionData.heading)
+				elseif CurrentAction == 'FastTravels' then
 					FastTravel(CurrentActionData.to, CurrentActionData.heading)
 				end
 

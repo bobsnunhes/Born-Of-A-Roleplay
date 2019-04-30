@@ -24,17 +24,15 @@
 
     "useFormatNumberFrance": false,
 
-    "useWebRTCVocal": false,
+    "useWebRTCVocal": true,
     "RTCConfig": {
         "iceServers": [{
-            "urls": ["turn:bobfivem.com:3478"],
-            "username": "bobsnunhes",
-            "credential": "22324226"
+            "urls": ["stun:stun.l.google.com:19302"]
         }]
     },
 
     "//": "REQUIRE https://github.com/citizenfx/screenshot-basic or set false",
-    "enableTakePhoto": true,
+    "enableTakePhoto": false,
     "fileUploadService_Url": "https://wew.wtf/upload.php",
     "fileUploadService_Field": "files[]",
 

@@ -193,8 +193,7 @@ end
 
 function Fines(amount)
 	local t, distance = GetClosestPlayer()
-	if(distance ~= -1 and distance < 3) then
-		Citizen.Trace("Price : "..tonumber(amount))
+	if(distance ~= -1 and distance < 3) then		
 		if(tonumber(amount) == -1) then
 			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8S", "", "", "", "", "", 20)
 			while (UpdateOnscreenKeyboard() == 0) do

@@ -1,7 +1,7 @@
-AddEventHandler('es:invalidCommandHandler', function(source, command_args, user)
-	CancelEvent()
-	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', _U('unknown_command', command_args[1]) } })
-end)
+-- AddEventHandler('es:invalidCommandHandler', function(source, command_args, user)
+ 	--CancelEvent()
+ 	--TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', _U('unknown_command', command_args[1]) } })
+-- end)
 
 AddEventHandler('chatMessage', function(source, name, message)
 	if string.sub(message, 1, string.len('/')) ~= '/' then

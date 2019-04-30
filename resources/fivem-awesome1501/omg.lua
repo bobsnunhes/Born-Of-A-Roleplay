@@ -1,5 +1,3 @@
-Citizen.Trace("OMG FINALLY FIVEM SCRIPTING FROM SERVER-SIDE STUFF WOWOWOWOWOW-zers\n")
-
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)

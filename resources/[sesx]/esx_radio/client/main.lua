@@ -102,7 +102,6 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
         if IsControlPressed(2, Keys["Y"]) and GetLastInputMethod(2) and Busy == false and PlayerData.job.name ~= nil and PlayerData.job.name == "police" then
-            Citizen.Trace("DEBUG - passou")
             ESX.TriggerServerCallback('esx_walkie:getItemAmount', function(quantity)
                 if quantity > 0 then
                     --TriggerServerEvent("esx_walkie:playSoundWithinDistanceServer", 10, "copradiooff", 1.0)
