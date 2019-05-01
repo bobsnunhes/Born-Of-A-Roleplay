@@ -44,7 +44,7 @@ cfg = {
 
 	displayBlips = false,						-- Show blips for mechanics locations
 
-	compatibilityMode = false,					-- prevents other scripts from modifying the fuel tank health to avoid random engine failure with BVA 2.01 (Downside is it disabled explosion prevention)
+	compatibilityMode = true,					-- prevents other scripts from modifying the fuel tank health to avoid random engine failure with BVA 2.01 (Downside is it disabled explosion prevention)
 
 	randomTireBurstInterval = 120,				-- Number of minutes (statistically, not precisely) to drive above 22 mph before you get a tire puncture. 0=feature is disabled
 

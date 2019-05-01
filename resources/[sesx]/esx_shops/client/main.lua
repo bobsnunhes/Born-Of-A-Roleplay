@@ -70,6 +70,9 @@ function OpenShopMenu(zone)
 			}
 		}, function(data2, menu2)
 			if data2.current.value == 'yes' then
+				Citizen.Trace('Menu amount = ' .. data.current.value)
+				Citizen.Trace('Menu item = ' .. data.current.item)
+				Citizen.Trace('Menu zone = ' .. zone)
 				TriggerServerEvent('esx_shops:buyItem', data.current.item, data.current.value, zone)
 			end
 

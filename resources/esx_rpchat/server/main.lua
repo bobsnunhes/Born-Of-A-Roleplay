@@ -16,7 +16,9 @@ function getIdentity(source)
 			lastname = identity['lastname'],
 			dateofbirth = identity['dateofbirth'],
 			sex = identity['sex'],
-			height = identity['height']
+            height = identity['height'],
+            job = identity['job'],
+			group = identity['group']           
 			
 		}
 	else
@@ -49,7 +51,7 @@ end)
 -- end)
 
 
- RegisterCommand('tweet', function(source, args, rawCommand)
+RegisterCommand('tweet', function(source, args, rawCommand)
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(6)
     local name = getIdentity(source)
@@ -60,7 +62,7 @@ end)
     })
 end, false)
 
- RegisterCommand('anontweet', function(source, args, rawCommand)
+RegisterCommand('anontweet', function(source, args, rawCommand)
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(11)
     local name = getIdentity(source)
@@ -71,7 +73,7 @@ end, false)
     })
 end, false)
 
- RegisterCommand('ad', function(source, args, rawCommand)
+RegisterCommand('ad', function(source, args, rawCommand)
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(4)
     local name = getIdentity(source)
@@ -82,7 +84,7 @@ end, false)
     })
 end, false)
 
-        RegisterCommand('ooc', function(source, args, rawCommand)
+RegisterCommand('ooc', function(source, args, rawCommand)
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(5)
     local name = getIdentity(source)
@@ -93,6 +95,17 @@ end, false)
     })
 end, false)
 
+
+TriggerEvent('es:addGroupCommand', 'adm', 'admin', function(source, args, user)
+    local grupos = getIdentity(source)
+  local playerName = GetPlayerName(source)
+  if grupos.group == 'admin' or grupos.group == 'superadmin' then
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgba(255, 0, 0, 1); border-radius: 3px;"><i class="fas fa-globe"></i> {0}:<br> {1}</div>',
+        args = { playerName, table.concat(args, " ") }
+    })
+  end	
+end, {help = 'Chat Admins.'})
 
 function stringsplit(inputstr, sep)
 	if sep == nil then

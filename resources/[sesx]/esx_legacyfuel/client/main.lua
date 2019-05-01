@@ -656,7 +656,7 @@ Citizen.CreateThread(function()
 					break
 				end
 			end
-
+			Citizen.Trace("rpmfuelusage = " .. rpmfuelusage)
 			if rpmfuelusage < Config.VehicleFailure then
 				SetVehicleUndriveable(vehicle, true)
 			elseif rpmfuelusage == 0 then
