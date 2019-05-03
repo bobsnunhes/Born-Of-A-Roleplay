@@ -173,6 +173,7 @@ AddEventHandler("esx_walkie:startAnim", function()
         end
     end)
 end)
+
 RegisterNetEvent("esx_walkie:stopAnim")
 AddEventHandler("esx_walkie:stopAnim", function()
     Citizen.CreateThread(function()
