@@ -388,10 +388,6 @@ Citizen.CreateThread(function()
     while true do
         Wait(5)
 
-        if HasBag then 
-            Citizen.Trace('esta com a mochila')
-        end 
-        
         if IsControlJustReleased(0, Keys['F5']) and HasBag and not IsEntityInAir(PlayerPedId()) then -- Change F5 to the key you want to open the meny with
             Bag()
         end
