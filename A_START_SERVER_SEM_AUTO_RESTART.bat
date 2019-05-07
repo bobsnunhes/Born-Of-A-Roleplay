@@ -1,2 +1,2 @@
-cd /d C:\BorfOfARoleplay\
-C:\BorfOfARoleplay\run.cmd +exec server.cfg
+cd /d C:\BornOfARoleplay\
+C:\BornOfARoleplay\run.cmd +exec server.cfg

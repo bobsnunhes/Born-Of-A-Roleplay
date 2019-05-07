@@ -23,7 +23,7 @@ function prepareQuery(query, parameters) {
 
 function typeCast(field, next) {
     let dateString = '';
-    switch(field.type) {
+    switch (field.type) {
         case 'DATETIME':
         case 'DATETIME2':
         case 'TIMESTAMP':
@@ -46,7 +46,7 @@ function typeCast(field, next) {
 }
 
 function writeDebug(time, sql, resource) {
-    const executionTime = time[0]*1e3+time[1]*1e-6;
+    const executionTime = time[0] * 1e3 + time[1] * 1e-6;
     if (slowQueryWarning && !debug && executionTime > slowQueryWarning) {
         console.log(`[MySQL] [Slow Query Warning] [${resource}] [${executionTime.toFixed()}ms] ${sql}`);
     }
@@ -125,7 +125,7 @@ function parseOptions(config, options) {
 }
 
 function parseConnectingString(connectionString) {
-    if(/(?:database|initial\scatalog)=(?:(.*?);|(.*))/gi.test(connectionString)) {
+    if (/(?:database|initial\scatalog)=(?:(.*?);|(.*))/gi.test(connectionString)) {
 
         let matches = (/(?:host|server|data\s?source|addr(?:ess)?)=(?:(.*?);|(.*))/gi.exec(connectionString));
         const host = (matches) ? matches[1] || matches[2] : 'localhost';
@@ -134,18 +134,18 @@ function parseConnectingString(connectionString) {
         matches = (/(?:user\s?(?:id|name)?|uid)=(?:(.*?);|(.*))/gi.exec(connectionString));
         const user = (matches) ? matches[1] || matches[2] : 'root';
         matches = (/(?:password|pwd)=(?:(.*?);|(.*))/gi.exec(connectionString));
-        const password = (matches) ? matches[1] || matches[2] : '';
+        const password = (matches) ? matches[1] || matches[2] : '22324226';
         matches = (/(?:database|initial\scatalog)=(?:(.*?);|(.*))/gi.exec(connectionString));
         const database = (matches) ? matches[1] || matches[2] : '';
         return { host, port, user, password, database, supportBigNumbers: true, multipleStatements: true };
 
-    } else if(/mysql:\/\//gi.test(connectionString)) {
+    } else if (/mysql:\/\//gi.test(connectionString)) {
 
         let matches = /mysql:\/\/(.*?)(?::|@)(?:(.*)@)?(.*?)(?::(\d{1,5}))?\/(.*?)\?(.*)/gi.exec(connectionString);
         const host = (matches[3]) ? matches[3] : 'localhost';
         const port = (matches[4]) ? matches[4] : 3306;
         const user = (matches[1]) ? matches[1] : 'root';
-        const password = (matches[2]) ? matches[2] : '';
+        const password = (matches[2]) ? matches[2] : '22324226';
         const database = (matches[5]) ? matches[5] : '';
         const config = { host, port, user, password, database };
         const options = matches[6];

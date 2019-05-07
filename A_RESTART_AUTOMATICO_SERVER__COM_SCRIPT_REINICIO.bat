@@ -7,7 +7,7 @@ echo SCRIPT DE REINICIO AUTOMATICO
 
 timeout /t 10 >null
 
-start "ServerManager" C:\BorfOfARoleplay\run.cmd +exec server.cfg
+start "ServerManager" C:\BornOfARoleplay\run.cmd +exec server.cfg
 echo ... %time% - Iniciando servidor
 
 timeout /t 15 >null
