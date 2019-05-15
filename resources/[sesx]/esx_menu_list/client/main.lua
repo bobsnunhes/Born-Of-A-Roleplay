@@ -46,6 +46,7 @@ Citizen.CreateThread(function()
 		end
 
 		if OpenedMenuCount == 0 then
+			Citizen.Trace("MENU LIST")
 			SetNuiFocus(false)
 		end
 

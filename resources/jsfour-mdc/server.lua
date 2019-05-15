@@ -5,7 +5,7 @@ math.randomseed(os.time())
 
 -- SAVE data to the database
 ESX.RegisterServerCallback('jsfour-mdc:save', function(source, cb, data)
-  MySQL.Async.fetchAll('SELECT firstname, lastname FROM characters WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.signedInUser},
+  MySQL.Async.fetchAll('SELECT firstname, lastname FROM users WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.signedInUser},
   function (result)
     if result[1] ~= nil then
       local uploader  = result[1].firstname .. ' ' .. result[1].lastname
@@ -38,7 +38,7 @@ ESX.RegisterServerCallback('jsfour-mdc:save', function(source, cb, data)
           end
         end)
       elseif data.type == 'efterlysning' then
-        MySQL.Async.fetchAll('SELECT dateofbirth, lastdigits FROM characters WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.lastdigits},
+        MySQL.Async.fetchAll('SELECT dateofbirth, lastdigits FROM users WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.lastdigits},
         function (user)
           if user[1] ~= nil then
             MySQL.Async.execute('INSERT INTO jsfour_efterlysningar (wanted, dob, crime, uploader, date, incident) VALUES (@wanted, @dob, @crime, @uploader, @date, @incident)',
@@ -110,7 +110,7 @@ ESX.RegisterServerCallback('jsfour-mdc:fetch', function(source, cb, data)
           if string.upper(result[i]['plate']) == data.plate then
             found = true
             local identifier = result[i]['owner']
-            MySQL.Async.fetchAll('SELECT firstname, lastname, dateofbirth, lastdigits FROM characters WHERE identifier = @identifier', {['@identifier'] = identifier},
+            MySQL.Async.fetchAll('SELECT firstname, lastname, dateofbirth, lastdigits FROM users WHERE identifier = @identifier', {['@identifier'] = identifier},
             function (result)
               if result[1] ~= nil then
                 result = result
@@ -159,7 +159,7 @@ ESX.RegisterServerCallback('jsfour-mdc:fetch', function(source, cb, data)
     local result
     local brottsregister
     local efterlysningar
-    MySQL.Async.fetchAll('SELECT identifier, firstname, lastname, dateofbirth, height, sex, phone_number FROM characters WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.lastdigits},
+    MySQL.Async.fetchAll('SELECT identifier, firstname, lastname, dateofbirth, height, sex, phone_number FROM users WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.lastdigits},
     function (result)
       if result[1] ~= nil then
         result = result
@@ -236,7 +236,7 @@ ESX.RegisterServerCallback('jsfour-mdc:remove', function(source, cb, data)
     end)
   end
 
-  MySQL.Async.fetchAll('SELECT firstname, lastname FROM characters WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.signedin},
+  MySQL.Async.fetchAll('SELECT firstname, lastname FROM users WHERE lastdigits = @lastdigits', {['@lastdigits'] = data.signedin},
   function (result)
     local remover = result[1].firstname .. ' ' .. result[1].lastname
     local wanted  = nil

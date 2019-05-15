@@ -51,6 +51,7 @@ Citizen.CreateThread(function()
 		end
 
 		if OpenedMenuCount == 0 then
+			Citizen.Trace("ESX_MENU_DIALOG")
 			SetNuiFocus(false)
 		end
 

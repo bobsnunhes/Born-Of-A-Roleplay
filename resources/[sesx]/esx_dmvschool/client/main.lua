@@ -61,6 +61,7 @@ function StopTheoryTest(success)
 		openQuestion = false
 	})
 
+	Citizen.Trace("ESX_DMVSCHOL")
 	SetNuiFocus(false)
 
 	if success then

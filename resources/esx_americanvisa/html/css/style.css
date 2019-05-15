@@ -1,0 +1,91 @@
+body,
+html {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.card {
+    display: none;
+    background-image: url("../img/visa_erased.png");
+    width: 600px;
+    height: 400px;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Foto */
+img {
+    /* border-radius: 50%; */
+    width: 100px;
+    height: 110px;
+    margin-top: 100;
+    margin-right: auto;
+    margin-left: 95;
+}
+
+
+/* Full-width input fields */
+
+.input-group {
+    margin-left: auto;
+    margin-top: -140;
+}
+
+.fields {
+    margin-left: auto;
+    margin-right: 70;
+    width: 40%;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    /* border: none; */
+    height: 10px;
+    font-size: 12px;
+    font-family: monospace;
+    background-color: transparent;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+/* Set a style for the submit button */
+
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: 0.9;
+    padding: 16px auto;
+    margin-top: 10;
+    margin-right: 35%;
+    text-align: center;
+    float: right;
+    width: 30%;
+    height: 8%;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+label {
+    font-size: 10px;
+}
+/* 
+#mainbox {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+} */

@@ -48,6 +48,7 @@ RegisterNUICallback('NUIFocusOff', function()
     SendNUIMessage({
         action = "hide"
     })
+    Citizen.Trace("ESX_INVENTORY")
 	SetNuiFocus(false, false)
 end)
 

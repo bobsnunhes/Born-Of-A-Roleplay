@@ -22,6 +22,7 @@ AddEventHandler('es_admin:setGroup', function(g)
 end)
 
 RegisterNUICallback('close', function(data, cb)
+	Citizen.Trace("ES_ADMIN2")
 	SetNuiFocus(false)
 end)
 

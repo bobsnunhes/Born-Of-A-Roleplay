@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div class="dialog">
+			<form id="register">
+				<h1>Personagem</h1>
+				<input id="firstname" type="text" placeholder="Nome"><br>
+				<input id="lastname" type="text" placeholder="Sobrenome"><br>
+				<input id="dateofbirth" 
+					   type="text" 
+					   placeholder="Data de Nascimento (DD/MM/YYYY)"
+					   pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}"
+					   onkeyup="var v = this.value;
+								if (v.match(/^\d{2}$/) !== null) {
+									this.value = v + '/';
+								} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+									this.value = v + '/';
+								}"
+					    maxlength="10"
+				><br>
+				
+				<!-- <div class="form-group col-md-2">
+					<label for="data">Dt. Nasc.:</label>
+					<input type="date" name="data" id="dateofbirth" class="form-control" maxlength="10">
+					<input type="num" name="idade" id="idade" class="form-control text-uppercase" placeholder="Idade" disabled>
+				</div> -->
+				
+
+				<input id="height" type="text" placeholder="Altura (140-200 cm)"><br>
+				<center>
+					<input type="radio" name="sex" value="m" checked>Masculino
+					<input type="radio" name="sex" value="f">Feminino<br>
+				</center>
+				<button id="submit" type="submit">CRIAR</button>
+			</form>
+		</div>
+		<script src="script.js" type="text/javascript"></script>
+	</body>
+</html>

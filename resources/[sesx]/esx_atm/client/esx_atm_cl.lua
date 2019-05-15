@@ -14,6 +14,7 @@ end)
 
 RegisterNetEvent('esx_atm:closeATM')
 AddEventHandler('esx_atm:closeATM', function()
+	Citizen.Trace("ESX_ATM")
 	SetNuiFocus(false)
 	menuIsShowed = false
 	SendNUIMessage({
@@ -83,6 +84,7 @@ Citizen.CreateThread(function()
 		end
 		if not isInATMMarker and hasAlreadyEnteredMarker then
 			hasAlreadyEnteredMarker = false
+			Citizen.Trace("ESX_ATM")
 			SetNuiFocus(false)	
 				menuIsShowed = false	
 				SendNUIMessage({

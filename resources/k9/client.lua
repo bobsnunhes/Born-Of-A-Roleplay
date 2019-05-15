@@ -8,6 +8,7 @@
     local attacked_player = 0
     local searching = false
     local playing_animation = false
+    local isopen = false
 
     local animations = {
         ['Normal'] = {
@@ -46,6 +47,7 @@ local language = {}
     -- Open Menu --
     function EnableMenu()
         SetNuiFocus(true, true)
+        isopen = true
         SendNUIMessage({
             type = "open_k9_menu"
         })
@@ -56,6 +58,7 @@ local language = {}
 --[[ NUI Callbacks ]]--
 
     RegisterNUICallback("closemenu", function(data)
+        isopen = false
         SetNuiFocus(false, false)
     end)
 
@@ -408,7 +411,11 @@ local language = {}
                     name = resource
                 })
                 just_started = false
-                SetNuiFocus(false, false)
+
+                if isopen then 
+                    SetNuiFocus(false, false)
+                end
+                
                 TriggerServerEvent("K9:SendLanguage")
             end
 

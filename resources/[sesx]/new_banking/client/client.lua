@@ -235,6 +235,7 @@ end)
 --===============================================
 RegisterNUICallback('NUIFocusOff', function()
   inMenu = false
+  Citizen.Trace("NEW_BANKING")
   SetNuiFocus(false, false)
   SendNUIMessage({type = 'closeAll'})
 end)
